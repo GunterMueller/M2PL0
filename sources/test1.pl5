@@ -1,0 +1,28 @@
+(* $ C+ *)
+(*$O+ *)
+
+
+PROCEDURE eingabe;
+BEGIN
+   ?x; ?y;
+   tt(x,y)
+END;
+
+VAR x, y, z: INTEGER;
+
+PROCEDURE tt(x, y: INTEGER);
+BEGIN
+   !y; !x;
+   y := 0; x := 0
+END;
+
+BEGIN
+   eingabe;
+   IF  NOT NOT (x > 0 AND y > 0) THEN
+      !x; !y
+   ELSE
+      z := -x - y;
+      !z
+   END IF
+END.
+

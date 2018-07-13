@@ -1,0 +1,56 @@
+
+(*$C+ *)
+(* $O+ *)
+
+VAR m : array1;
+
+CONST CALL = 33;
+
+PROCEDURE read(VAR m: array0);
+VAR i : INTEGER;
+VAR x : array0;
+BEGIN
+    i := 1;
+    WHILE i <= 7 DO
+       input(x[i]);
+       i := i + 1
+    END DO;
+    m := x
+END;
+
+TYPE array1 = ARRAY 3 OF array0;
+
+PROCEDURE writeReverse;
+VAR x : array0;
+VAR i : INTEGER;
+BEGIN
+   ;;;;;;;;;;;;;;;;;;;;;
+   ;; x := m[2];      ;;
+   ;; i := 7;	      ;;
+   ;; WHILE i >= 1 DO ;;
+   ;;    !x[i];       ;;
+   ;;    i := i - 1   ;;
+   ;; END DO          ;;
+   ;; !'\n'	      ;;
+   ;;;;;;;;;;;;;;;;;;;;;
+END;
+
+TYPE array0 = ARRAY 7 OF INTEGER;
+
+PROCEDURE input(VAR i: INTEGER);
+BEGIN
+   ?i
+END;
+
+BEGIN
+   !'Testprogramm 3\n';
+   !CALL; !'\n';
+   !'\n7 Zahlenwerte eingeben:\n';
+   read(m[2]);
+   IF NOT (NOT NOT ODD m[2][1]) THEN
+      writeReverse
+   ELSE
+      !m[2][1]
+   END IF
+END.
+

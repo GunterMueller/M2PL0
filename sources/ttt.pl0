@@ -1,0 +1,8 @@
+(*$C+ *)
+VAR a,b,c: IMTEGER;
+
+BEGIN
+  ?a;
+  ?b;
+  !a*b
+END.

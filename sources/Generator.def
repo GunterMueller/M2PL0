@@ -1,0 +1,60 @@
+DEFINITION MODULE Generator;			(* gf	05.01.89 *)
+
+FROM	Scanner 	IMPORT STRING;
+FROM	Interpreter	IMPORT INSTR, Command;
+
+EXPORT	QUALIFIED Label,
+		  Gen, GenL, GenS, Gens,
+		  GetNewLabel, SetLabel,
+		  CodeStore,
+		  InitGenerator;
+
+
+CONST maxadr = 1023;
+TYPE  Label;
+VAR   CodeStore : ARRAY[0..maxadr] OF INSTR;
+
+
+PROCEDURE GetNewLabel() : Label;
+
+	  (* get a new label to be used by GenL and SetLabel.	*)
+
+
+PROCEDURE SetLabel(lab: Label);
+
+	  (* inserts label 'lab' at current code position.	*)
+	  (* fixes all instuctions which contain this label	*)
+	  (* in their 'val' field, i.e. all instructions	*)
+	  (* which are genereated by GenL(.., .., lab). 	*)
+
+
+PROCEDURE Gen(fct: Command; lev, val: CARDINAL);
+
+	  (* emmit instruction					*)
+
+
+PROCEDURE GenL(fct: Command; lev: CARDINAL; lab: Label);
+
+	  (* emmit instruction. the 'val' field contains the	*)
+	  (* address of label 'lab'. if the address of 'lab'	*)
+	  (* is unknown, the 'val' field will be fixed by	*)
+	  (* SetLabel.						*)
+
+
+PROCEDURE GenS(fct: Command; len: CARDINAL; str: STRING);
+
+	  (* emmit instruction. to be used to generate		*)
+	  (* instructions which are followed by a string	*)
+	  (* literal. the length of the string is stored in	*)
+	  (* the 'val' field.					*)
+
+
+PROCEDURE Gens(fct: Command);
+
+	  (* short form of Gen,  == Gen(fct, 0, 0)		*)
+
+
+PROCEDURE InitGenerator;
+
+END Generator.
+

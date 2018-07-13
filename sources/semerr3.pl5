@@ -1,0 +1,27 @@
+
+PROCEDURE p1(x, y: t1);
+BEGIN
+   p2;					(* zu wenig Parameter *)
+   p2(y);
+   p2(x, y)				(* zu viel Parameter  *)
+END;
+
+PROCEDURE p2(x: t1);
+BEGIN
+   p1(x, x);
+   p1(x, x[2]); 			(* falscher Parameter *)
+   p1(x);				(* zu wenig Parameter *)
+   p1(x, x, x); 			(* zu viel Parameter  *)
+   p3;
+   p3(x);				(* zu viel Parameter  *)
+   p4(x)				(* p4 ist keine Prozedur *)
+END;
+
+TYPE t1 = ARRAY 4 OF BOOLEAN;
+
+PROCEDURE p3; BEGIN END;
+
+VAR p4 : BOOLEAN;
+
+BEGIN
+END.

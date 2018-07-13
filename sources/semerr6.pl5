@@ -1,0 +1,60 @@
+(*
+ * Das Programm enthaelt fehlerhafte Typdefinitionen
+ * mit vielen Folgefehlern.
+ * Gut ist es, wenn nur fuer die gekennzeichneten Zeilen
+ * Fehlermeldungen ausgegeben werden.
+ *)
+
+VAR m : array1;
+
+TYPE t0 = ARRAY 3 OF ARRAY 2 OF t2;	(* Fehler im Elementtyp *)
+
+PROCEDURE read(VAR k: array0);
+VAR i : INTEGER;
+VAR x : array0;
+BEGIN
+    i := 1;
+    WHILE i <= 7 DO
+       input(x[i]);
+       i := i + 1
+    END DO;
+    k := x;
+    writeReverse(m);
+END;
+
+TYPE array1 = ARRAY 3 OF array0;	(* zykl. Typdefinition *)
+TYPE t2 = ARRAY 2 OF input;		(* unzul. Elementtyp   *)
+
+PROCEDURE writeReverse(m: array1);
+VAR x : array0;
+VAR i : INTEGER;
+BEGIN
+   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+   ;; x := m[2];      		;;
+   IF m[1][1] > 0 THEN		;;
+   ;; i := 7;	      		;;
+   ;; WHILE i >= 1 DO 		;;
+   ;;    !x[i];       		;;
+   ;;    m[2][i] := 0 		;; 
+   ;;    i := i - 1   		;;
+   ;; END DO          		;;
+   ;; m[1][1] := m[1][1] - 1	;;
+   ;; writeReverse(m) 		;;
+   END IF;;;;;;;;;;;;;;;;;;;;;;;;;
+END;
+
+TYPE array0 = ARRAY 7 OF array;		(* zykl. Typdefinition *)
+
+PROCEDURE input(VAR i: INTEGER);
+BEGIN
+   ?i
+END;
+
+TYPE array = ARRAY 7 OF array0;		(* zykl. Typdefinition *)
+
+BEGIN
+   m[1][1] := 2;
+   read(m[2]);
+   m[1][1] := 1;
+   writeReverse(m)
+END.

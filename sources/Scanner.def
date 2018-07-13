@@ -1,0 +1,67 @@
+DEFINITION MODULE Scanner;		(* gf  05.01.89 (pl0) *)
+
+
+EXPORT QUALIFIED SYMBOL, IDENT, STRING, POSITION,
+		 dummyPosition,
+		 sym, id, num, pos, strp,
+		 GetSymbol,
+		 printCode, traceParser, printListing, optimize,
+		 InitScanner;
+
+
+TYPE SYMBOL =	(sNull, sPeriod,
+		 sRBracket, sLBracket,
+		 sTimes, sDiv,
+		 sPlus, sMinus,
+		 sEQ, sNE, sLT, sLE, sGT, sGE,
+		 sAnd, sOr,
+		 sComma, sRParen, sThen, sDo, sBecomes,
+		 (* start formula --------------------------------*)
+		 sLParen, sOdd, sNot, sNumber, sString,
+		 (* start Statement ------------------------------*)
+		 sIdent, sCall, sIf, sWhile, sRead, sWrite,
+		 (* end   Statement ------------------------------*)
+		 sEnd, sElsif, sElse, sSemicolon,
+		 (* sArray, sOf, *) sColon,
+		 (* start declarations or statementpart ----------*)
+		 sBegin, sType, sConst, sVar, sProcedure,
+		 sEof);
+
+TYPE IDENT  = CARDINAL;
+
+TYPE STRING = POINTER TO ARRAY[0..99] OF CHAR;
+
+TYPE POSITION = RECORD		(* position in source text *)
+		  line, column : CARDINAL
+		END;
+
+
+VAR sym : SYMBOL;	(* last symbol read			*)
+    id	: IDENT;	(* identifier number			*)
+    num : CARDINAL;	(* last number read			*)
+    strp: STRING;	(* pointer to string read		*)
+    pos : POSITION;	(* current position in source text	*)
+
+    dummyPosition    : POSITION;
+
+
+
+VAR printCode,
+    traceParser,
+    optimize,
+    printListing  : BOOLEAN;
+
+    noPosition	  : POSITION;
+
+
+
+
+
+
+PROCEDURE GetSymbol;	(* get next symbol;
+			 * results: sym, id, num, strp, pos
+			 *)
+
+PROCEDURE InitScanner;
+
+END Scanner.

@@ -1,0 +1,46 @@
+DEFINITION MODULE Interpreter;			(* gf	29.7.88 *)
+
+EXPORT QUALIFIED	INSTR,
+		 	Command, maxlev,
+		 	Interpret;
+
+CONST	maxlev = 15;
+
+TYPE	Command  = (LI,  LIS, LAD, CAL, INT, JMP, JPC, MVB, 
+	            RET, NEG, LOD, STO, 
+		    ADD, SUB, MUL, DIv,
+		    EQ,  NE,  LT,  GE,  GT,  LE,
+		    ODd, 
+		    ANd, Or,  NOt,
+		    INP, WRI, WRC);
+
+TYPE	Command  = (MSP,  LDA,  LD,   ST,   LDI   LDIs,
+		    JMP,  JMPC, CALL, RET,  MV,
+	            NEGi, ODDi,
+		    ADDi, SUBi, MULi, DIVi,
+		    EQ,   NE,   LT,   GE,   GT,   LE,
+		    ANDb, ORb,  NOTb,
+		    INi,  OUTi, OUTc);
+
+	level    = [0..maxlev];
+	
+	instrKind = (instr, strval);
+
+	INSTR = RECORD
+		   CASE  instrKind OF
+		     instr:
+			  fct : Command;
+			  lev : level;
+			  val : CARDINAL (* address | offset | lit. value *)
+		   | strval:
+			  par : ARRAY[0..5] OF CHAR;  (* string literal *)
+		   END
+		END;
+
+
+
+PROCEDURE Interpret(VAR code : ARRAY OF INSTR);
+
+
+END Interpreter.
+
