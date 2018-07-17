@@ -3,11 +3,12 @@ DEFINITION MODULE ObjectTable;		(* gf  03.08.88 (pl0) *)
 FROM Scanner   IMPORT IDENT, STRING, POSITION;
 FROM Generator IMPORT Label;
 
-EXPORT QUALIFIED Object, ObjKind, ObjType,
+(*EXPORT QUALIFIED Object, ObjKind, ObjType,
 		 Undefined, Integer,
 		 EnterBlock, LeaveBlock,
 		 EnterDecl, FindDecl, GetObjType,
 		 InitObjectTable;
+*)
 
 
 TYPE Object   = POINTER TO Objectvalue;

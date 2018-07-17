@@ -1,8 +1,9 @@
 DEFINITION MODULE Interpreter;			(* gf	06.01.89 *)
 
-EXPORT QUALIFIED	INSTR,
+(*EXPORT QUALIFIED	INSTR,
 			Command, maxlev,
 			Interpret;
+*)
 
 CONST	maxlev = 15;
 

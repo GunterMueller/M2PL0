@@ -1,12 +1,13 @@
 DEFINITION MODULE Scanner;		(* gf  05.01.89 (pl0) *)
 
 
-EXPORT QUALIFIED SYMBOL, IDENT, STRING, POSITION,
+(* EXPORT QUALIFIED SYMBOL, IDENT, STRING, POSITION,
 		 dummyPosition,
 		 sym, id, num, pos, strp,
 		 GetSymbol,
 		 printCode, traceParser, printListing, optimize,
 		 InitScanner;
+*)
 
 
 TYPE SYMBOL =	(sNull, sPeriod,

@@ -3,8 +3,9 @@ DEFINITION MODULE StringTable;		(* gf 01.12.88 (pl0) *)
 FROM Scanner IMPORT SYMBOL, IDENT, STRING;
 FROM ObjectTable IMPORT Object;
 
-EXPORT QUALIFIED InsertIdent, IdKind, SameId,
+(* EXPORT QUALIFIED InsertIdent, IdKind, SameId,
 		 EnterKeyWord, InitStringTable;
+*)
 
 
 PROCEDURE InsertIdent(s: ARRAY OF CHAR) : IDENT;

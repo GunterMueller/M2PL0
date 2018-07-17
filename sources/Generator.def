@@ -3,11 +3,12 @@ DEFINITION MODULE Generator;			(* gf	05.01.89 *)
 FROM	Scanner 	IMPORT STRING;
 FROM	Interpreter	IMPORT INSTR, Command;
 
-EXPORT	QUALIFIED Label,
+(* EXPORT	QUALIFIED Label,
 		  Gen, GenL, GenS, Gens,
 		  GetNewLabel, SetLabel,
 		  CodeStore,
 		  InitGenerator;
+*)
 
 
 CONST maxadr = 1023;

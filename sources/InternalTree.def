@@ -2,12 +2,13 @@ DEFINITION MODULE InternalTree; 		(* gf	3.8.88 *)
 
 FROM	Scanner IMPORT IDENT, STRING, POSITION;
 
-EXPORT QUALIFIED BLCK,	  DECL,     STMT,     EXPR,
+(*EXPORT QUALIFIED BLCK,	  DECL,     STMT,     EXPR,
 		 blckPtr, declPtr,  stmtPtr,  exprPtr,
 			  declKind, stmtKind, exprKind,
 		 monOperator, dyOperator, conType,
 		 NewDeclSequence, NewStmtSequence, NewExprSequence,
 		 NoDeclaration,   NoStatement,	   NoExpression;
+*)
 
 
 TYPE declKind = (nodeclaration, declsequence,
