@@ -46,3 +46,5 @@ do
   xc +GENDEBUG $x
 done
 
+
+xc =make PL0
