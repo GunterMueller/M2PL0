@@ -32,7 +32,8 @@ BEGIN
    LOOP
 	IF w = 0 THEN RETURN 0 END;
 	IF buf[u] # buf[v] THEN
-	   RETURN INTEGER(ORD(buf[u])) - INTEGER(ORD(buf[v]))
+	   (* RETURN INTEGER(ORD(buf[u])) - INTEGER(ORD(buf[v])) *)
+	   RETURN ORD(buf[u]) - ORD(buf[v])
 	ELSE
 	   INC(u); INC(v); DEC(w)
 	END
@@ -60,11 +61,13 @@ BEGIN
 	IF d >= 0 THEN k := m + 1 END;
    UNTIL k > l;
    IF k > l + 1 THEN
-	RETURN IDENT(m) 	(* is a key word *)
+	(* GM RETURN IDENT(m) 	(* is a key word *) *)
+	RETURN m        	(* is a key word *)
    ELSE
 	(* don't store it twice if it already exists *)
 	FOR i := K+1 TO nIds DO
-	    IF Diff(id, idKinds[i].ind) = 0 THEN RETURN IDENT(i) END
+	    (* GM IF Diff(id, idKinds[i].ind) = 0 THEN RETURN IDENT(i) END *)
+	    IF Diff(id, idKinds[i].ind) = 0 THEN RETURN i END
 	END;
 	INC(nIds);
 	WITH idKinds[nIds] DO
@@ -72,24 +75,28 @@ BEGIN
 	     sym := sIdent
 	END;
 	id := id1;
-	RETURN IDENT(nIds)
+	(* GM RETURN IDENT(nIds) *)
+	RETURN nIds
    END
 END InsertIdent;
 
 
 PROCEDURE IdKind(idno: IDENT): SYMBOL;
 BEGIN
-    IF CARDINAL(idno) > nIds THEN
+    (* GM IF CARDINAL(idno) > nIds THEN *)
+    IF idno > nIds THEN
        RETURN sNull
     ELSE
-       RETURN idKinds[CARDINAL(idno)].sym
+       (* GM RETURN idKinds[CARDINAL(idno)].sym *)
+       RETURN idKinds[idno].sym
     END;
 END IdKind;
 
 
 PROCEDURE SameId(id1, id2: IDENT): BOOLEAN;
 BEGIN
-   RETURN CARDINAL(id1) = CARDINAL(id2)
+   (* RETURN CARDINAL(id1) = CARDINAL(id2) *)
+   RETURN id1 = id2
 END SameId;
 
 

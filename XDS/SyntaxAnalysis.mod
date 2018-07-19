@@ -88,14 +88,14 @@ END ApendDeclaration;
 
 
 
-(* the following forward declarations are needed for OSI M2 compiler
-( *$nonstandard * )
+(* the following forward declarations are needed for OSI M2 compiler *)
+(* ( *$nonstandard * ) *)
 
 PROCEDURE Block      () 	 : blckPtr;		 FORWARD;
 PROCEDURE Expression () 	 : exprPtr;		 FORWARD;
 PROCEDURE Variable   (id: IDENT) : exprPtr;		 FORWARD;
 
-( *$standard *)
+(* standard *) 
 
 
 PROCEDURE Factor(): exprPtr;

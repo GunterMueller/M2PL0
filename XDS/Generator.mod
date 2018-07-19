@@ -60,7 +60,8 @@ BEGIN
 	 IF (fct = JMP) OR (fct = JMPC) OR (fct = CALL) THEN
 	    Write('$'); WriteHex(val, 4)
 	 ELSE
-	    WriteInt(INTEGER(val), 1)
+	    (* GM WriteInt(INTEGER(val), 1)   *)
+	    WriteInt(val, 1)
 	 END
       END;
       WriteLn;

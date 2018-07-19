@@ -75,9 +75,12 @@ PROCEDURE GetObjType(obj : Object) : ObjType;
 BEGIN
    CASE obj^.kind OF
      undefined	   : RETURN Undefined
-   | simpleType    : RETURN ObjType(obj)
+   (* GM | simpleType    : RETURN ObjType(obj)
    | constant	   : RETURN ObjType(obj^.cType)
-   | variable	   : RETURN ObjType(obj^.vType)
+   | variable	   : RETURN ObjType(obj^.vType)  *)
+   | simpleType    : RETURN obj
+   | constant	   : RETURN obj^.cType
+   | variable	   : RETURN obj^.vType
    ELSE
       RETURN Undefined
    END
@@ -93,7 +96,8 @@ BEGIN
 	kind	:= block;
 	nextObj := NIL;
 	lastObj := hd;
-	id	:= IDENT(0);
+	(* GM id	:= IDENT(0); *)
+	id	:= 0;
 	down	:= topScope
    END;
    topScope := hd;
@@ -122,7 +126,8 @@ BEGIN
 	kind	:= block;
 	nextObj := NIL;
 	lastObj := hd;
-	id	:= IDENT(0);
+	(* GM id	:= IDENT(0); *)
+	id	:= 0;
 	down	:= NIL
    END;
    topScope := hd;
@@ -130,7 +135,8 @@ BEGIN
    obj := EnterDecl(InsertIdent("INTEGER"), dummyPosition);
 	  obj^.kind  := simpleType;
 
-   Integer := ObjType(obj);
+   (* GM Integer := ObjType(obj); *)
+   Integer := obj;
 
    RETURN curlev
 END InitObjectTable;
@@ -139,10 +145,12 @@ END InitObjectTable;
 BEGIN
     NEW(undef);
     WITH undef^ DO
-	 id	 := IDENT(-1);
+	 (* GM id	 := IDENT(-1); *)
+	 id	 := 1;
 	 nextObj := NIL;
 	 level	 := 0;
 	 kind	 := undefined;
     END;
-    Undefined := ObjType(undef);
+    (* GM Undefined := ObjType(undef); *)
+    Undefined := undef;
 END ObjectTable.

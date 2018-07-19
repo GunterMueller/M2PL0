@@ -81,7 +81,8 @@ BEGIN (* expression *)
 	    CASE obj^.kind OF
 		constant :
 		    Trace("   constant");
-		    Gen(LDI, 0, CARDINAL(cVal));
+		    (* GM Gen(LDI, 0, CARDINAL(cVal)); *)
+		    Gen(LDI, 0, cVal);
 		    IF node^.usedInd^.kind # noexpression THEN
 		       Error(48, node^.usedInd^.position)
 		    END;
@@ -218,7 +219,8 @@ BEGIN
 	obj := FindDecl(tp^.typeId, tp^.position);
 	CASE obj^.kind OF
 	  simpleType:
-	     RETURN ObjType(obj)
+	     (* GM RETURN ObjType(obj) *)
+	     RETURN obj
 	| undefined:
 	     Error(11, tp^.position);
 	     RETURN Undefined

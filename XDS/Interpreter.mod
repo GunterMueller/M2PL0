@@ -59,7 +59,8 @@ VAR   PC, BR, SP: CARDINAL;	(* Program-, Base-, Stack-Registers *)
       | GT  : res := ORD(op1  >  op2);
       | LE  : res := ORD(op1  <= op2);
       END;
-      RETURN CARDINAL(res)
+      (* GM RETURN CARDINAL(res) *)
+      RETURN res
    END INTArith;
 
 BEGIN (* Interpret *)
@@ -69,7 +70,8 @@ BEGIN (* Interpret *)
 	 IR := code[PC]; INC(PC);
 	 CASE IR.cmd OF
 	   MSP :(* modifiy SP by IR.val *)
-		SP := CARDINAL(INTEGER(SP) + INTEGER(IR.val))
+		(* GM SP := CARDINAL(INTEGER(SP) + INTEGER(IR.val)) *)
+		SP := SP + IR.val
 
 	 | LDA :(* load address *)
 		INC(SP);
@@ -125,10 +127,12 @@ BEGIN (* Interpret *)
 		DEC(SP, 2)
 
 	 | NEGi:(* negate top of stack value *)
-		stack[SP] := CARDINAL(-INTEGER(stack[SP]))
+		(* GM stack[SP] := CARDINAL(-INTEGER(stack[SP])) *)
+		stack[SP] := stack[SP]
 
 	 | ODDi:(* yields true if top of stack values was odd, else false *)
-		stack[SP] := ORD(ODD(INTEGER(stack[SP])))
+		(* GM stack[SP] := ORD(ODD(INTEGER(stack[SP]))) *)
+		stack[SP] := ORD(ODD(stack[SP]))
 
 	   (*=== integer arithmetic ===*)
 	 | ADDi,SUBi,MULi,DIVi,
@@ -136,8 +140,10 @@ BEGIN (* Interpret *)
 	   LT,	GE,  GT,  LE:
 		DEC(SP);
 		stack[SP] := INTArith(IR.cmd,
-				      INTEGER(stack[SP]),
-				      INTEGER(stack[SP+1]))
+			(* GM 	      INTEGER(stack[SP]),
+				      INTEGER(stack[SP+1])) *)
+				      stack[SP],
+				      stack[SP+1])
 
 	   (*=== boolean operations ===*)
 	 | ANDb:DEC(SP);
@@ -153,7 +159,8 @@ BEGIN (* Interpret *)
 		 INC(SP);
 		 Write('>'); ReadInt(tmpint);
 		 IF Done THEN
-		    stack[SP] := CARDINAL(tmpint);
+		    (* GM stack[SP] := CARDINAL(tmpint); *)
+		    stack[SP] := tmpint;
 		 ELSE
 		    WriteString("kein zulaessiger Wert"); WriteLn;
 		    PC := 0  (* terminate program *)
@@ -161,7 +168,8 @@ BEGIN (* Interpret *)
 		 ReadLn; (* skip rest of input line *)
 
 	 | OUTi: (* write top of stack integer value *)
-		 WriteInt(INTEGER(stack[SP]), 7);
+		 (* GM WriteInt(INTEGER(stack[SP]), 7); *)
+		 WriteInt(stack[SP], 7);
 		 DEC(SP)
 
 	 | OUTc: (* Write top of stack characters *)
