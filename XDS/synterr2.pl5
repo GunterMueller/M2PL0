@@ -1,1 +1,47 @@
-../sources/synterr2.pl5
+(*$C+ *)
+VAR m : array1;
+    n : array0;			(* VAR fehlt 			*)
+VAR o = array1;			(* '=' anstelle von ':' 	*)
+
+CONST CALL = 33;
+
+PROCEDURE read			(* ';' fehlt			*)
+VAR i : INTEGER;
+VAR x = array0; 		(* '=' anstelle von ':'		*)
+BEGIN
+    i := 1;
+    WHILE i <= 7 DO
+       ?x[i];
+       i := i + 1
+    END WHILE;			(* WHILE anstelle von DO	*)
+    m[2] := x
+END;
+
+TYPE array1 = ARRAY 3 OF array0;
+
+PROCEDURE writeReverse;
+VAR x : array0;
+VAR i : INTEGER;
+BEGIN
+   ;;;;;;;;;;;;;;;;;;;;;
+   ;; x := m[2];      ;;
+   ;; i := 7;	      ;;
+   ;; WHILE i >= 1 DO ;;
+   ;;    !x[i];       ;;
+   ;;    i := i - 1   ;;
+   ;; END             ;;	(* DO fehlt			*)
+   ;;;;;;;;;;;;;;;;;;;;;
+END;
+
+TYPE array0 = ARRAY 7 OF INTEGER;
+
+BEGIN
+   !CALL;
+   read;
+   IF NOT ODD m[2 [1] THEN	(* ']' fehlt			*)
+      writeReverse
+   ELSE
+      !m[2][ ]			(* Indexausdruck fehlt		*)
+   END FI			(* FI anstelle von IF		*)
+END.
+

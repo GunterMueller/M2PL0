@@ -1,1 +1,11 @@
-../sources/ErrorHandling.def
+DEFINITION MODULE ErrorHandling;
+
+FROM	Scanner IMPORT	POSITION;
+
+(* EXPORT	QUALIFIED PrintError1, PrintError2; *)
+
+PROCEDURE PrintError1(n : CARDINAL; p: POSITION);
+PROCEDURE PrintError2(n : CARDINAL; p: POSITION);
+
+END ErrorHandling.
+
