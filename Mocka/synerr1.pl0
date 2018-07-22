@@ -1,1 +1,18 @@
-../sources/synerr1.pl0
+
+
+
+VAR i   : INTEGER;
+var a,b : BOOLEAN;
+
+PROCEDURE reduce;
+BEGIN
+   IF a > b THEN a := a - b;
+   IF b > a THEN b := b - a;
+END;
+
+BEGIN
+   ?a;
+   ?b;
+   WHILE  a#b DO CALL reduce;
+   !a
+END.

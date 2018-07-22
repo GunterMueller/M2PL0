@@ -1,1 +1,18 @@
-../sources/Synthesis.def
+DEFINITION MODULE Synthesis;		(* gf		1.8.88 *)
+
+
+FROM	InternalTree	IMPORT	blckPtr;
+
+
+(* EXPORT QUALIFIED SemanticError, traverse;
+*)
+
+
+
+VAR SemanticError : BOOLEAN;
+
+PROCEDURE traverse(head: blckPtr);
+
+
+END Synthesis.
+

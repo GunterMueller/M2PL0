@@ -1,1 +1,47 @@
-../sources/semerr5.pl5
+
+VAR m : array1;
+VAR n : arrayx;				(* arrayx ist nicht definiert*)
+
+CONST CALL = 33;
+
+PROCEDURE read;
+VAR i : INTEGER;
+VAR x : array0;
+BEGIN
+    i := 1;
+    WHILE i <= 7 DO
+       ?x[i];
+       i := i + 1
+    END DO;
+    m[2] := x
+END;
+
+TYPE array1 = ARRAY 3 OF array0;
+
+PROCEDURE writeReverse;
+VAR x : arrayO;
+VAR i : INTEGER;
+BEGIN
+   ;;;;;;;;;;;;;;;;;;;;;
+   ;; x := m[2];      ;;		(* verschiedene Typen  *)
+   ;; i := 7;	      ;;
+   ;; WHILE i >= 1 DO ;;
+   ;;    !x[i];       ;;
+   ;;    i := i - 1   ;;
+   ;; END DO          ;;
+   ;;;;;;;;;;;;;;;;;;;;;
+END;
+
+TYPE array0 = ARRAY 7 OF INTEGER;
+TYPE arrayO = ARRAY 7 OF INTEGER;
+
+BEGIN
+   !CALL[3];				(* indizierte Konstante *)
+   read;
+   IF NOT ODD m[2][1] THEN
+      writeReverse
+   ELSE
+      !m[2][1]
+   END IF
+END.
+

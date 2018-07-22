@@ -1,1 +1,22 @@
-../sources/synterr3.pl5
+
+PROCEDURE p1( VAR a,b,c, : INTEGER);	(* ein Komma zu viel	*)
+BEGIN
+END;
+
+PROCEDURE p2( VAR : INTEGER); 		(* Bezeichner fehlt	*)
+BEGIN
+END;
+
+PROCEDURE p3( VAR a: INTEGER; ); 	(* ';' zuviel		*)
+BEGIN
+END;
+
+PROCEDURE p4( VAR a: ; b: c ); 		(* Typbezeichner fehlt  *)
+BEGIN
+END;
+
+PROCEDURE p4( a,b,: ; b: c ); 		(* 2 Bezeichner fehlen	*)
+BEGIN
+END;
+
+BEGIN END;				(* ';' statt '.'	*)

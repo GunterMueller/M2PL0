@@ -1,1 +1,37 @@
-../sources/test2.pl5
+(* $ C+ *)
+(* $ O+ *)
+
+TYPE z = ARRAY 4 OF INTEGER;
+
+VAR  a,b : z;
+VAR  x   : INTEGER;
+
+PROCEDURE P (VAR x: z; y: z ;  y1: INTEGER) ;
+BEGIN
+   y[1] := y1 + 100;
+   x[3] := y[1];
+   input(x[4])
+END;
+
+PROCEDURE input(VAR i: INTEGER);
+BEGIN
+   ?i
+END;
+
+PROCEDURE output(i: INTEGER);
+BEGIN
+   !i
+END;
+
+
+BEGIN
+   input(x);
+   a[1] := 1;
+   a[2] := x;
+   P(a, b, a[a[1]+1]+10);
+   output(a[1]);
+   output(a[2]);
+   output(a[3]);
+   output(a[4])
+(*$T+ *)
+END.

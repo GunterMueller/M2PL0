@@ -1,1 +1,25 @@
-../sources/test3.pl0
+
+(* groesster gemeinsamer Teiler zweier Zahlen *)
+(*$C+ *)
+
+VAR i   : INTEGER;
+VAR a,b : INTEGER;
+
+PROCEDURE reduce;
+BEGIN
+   IF a > b THEN a := a - b;
+   IF b > a THEN b := b - a;
+END;
+
+BEGIN
+   ?a;;;;;;;;;;;;;;;;;;;
+   ?b;
+   WHILE  a#b DO BEGIN 
+       CALL reduce;
+       IF ODD a THEN
+       BEGIN
+          !a; !b
+       END
+   END;
+   !a;;;;;;;;;;;;;;;;;;;;
+END.

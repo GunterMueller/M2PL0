@@ -1,1 +1,11 @@
-../sources/semerr2.pl5
+(*$C- *)
+TYPE a = ARRAY 4 OF b;
+TYPE b = ARRAY 2 OF BOOLEAN;
+
+VAR x : a;
+
+BEGIN
+   ?x[2][1];		(* fehlerhafter Typ *)
+   !x[2][1][3]		(* fehlerhafte Indizierung *)
+END.
+

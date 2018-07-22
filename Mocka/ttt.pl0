@@ -1,1 +1,8 @@
-../sources/ttt.pl0
+(*$C+ *)
+VAR a,b,c: IMTEGER;
+
+BEGIN
+  ?a;
+  ?b;
+  !a*b
+END.

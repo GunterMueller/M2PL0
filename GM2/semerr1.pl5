@@ -1,1 +1,11 @@
-../sources/semerr1.pl5
+
+TYPE a = ARRAY 4 OF b;
+TYPE b = ARRAY 2 OF INTEGER;
+
+VAR x : a;
+
+BEGIN
+   ?x[2];		(* Typfehler *)
+   !x[2]		(* Typfehler *)
+END.
+
