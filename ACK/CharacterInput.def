@@ -1,1 +1,21 @@
-../sources/CharacterInput.def
+DEFINITION MODULE CharacterInput;
+
+(* EXPORT QUALIFIED ch, GetCh, EOF,
+		 currLine, currCol,endOfInput, InitInput;
+*)
+
+
+CONST EOF = 0C;
+
+VAR  ch 	 : CHAR;
+     currLine	 : CARDINAL;
+     currCol	 : CARDINAL;
+     endOfInput  : BOOLEAN;
+
+
+
+PROCEDURE GetCh;
+
+PROCEDURE InitInput;
+
+END CharacterInput.
