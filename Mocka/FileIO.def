@@ -65,6 +65,9 @@ VAR
   con, err:  File;     (* Standard terminal and error channels. *)
   StdIn, StdOut: File; (* standard input/output - redirectable *)
   EOFChar: CHAR;       (* Signal EOF interactively *)
+  (* GM *)
+  Done : BOOLEAN;
+  termCH: CHAR; (* set in ReadString and numeric input procs *)
 
 (* The following routines provide access to command line parameters and
    the environment. *)
@@ -279,6 +282,8 @@ CONST
   Concat  = Strings.Concat;
 
 *)
+
+
 
 PROCEDURE SLENGTH (stringVal: ARRAY OF CHAR): CARDINAL;
 (* Returns number of characters in stringVal, not including nul *)

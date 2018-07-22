@@ -5,9 +5,9 @@ IMPLEMENTATION MODULE Interpreter;		(* gf	05.01.89 *)
 
 FROM	SYSTEM	   IMPORT WORD;
 FROM	InOut	   IMPORT Read, ReadInt,
-			  Write, WriteLn, WriteInt, WriteString,
-			  Done, termCH;
-FROM FileIO        IMPORT EOL;
+			  Write, WriteLn, WriteInt, WriteString;
+(* GM *)
+FROM FileIO        IMPORT Done,termCH,EOL;
 
 
 CONST stackSize = 1000;

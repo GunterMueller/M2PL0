@@ -1,8 +1,9 @@
 IMPLEMENTATION MODULE CharacterInput;
 
 FROM	InOut		IMPORT	Read,
-				Write, WriteCard, WriteString, WriteLn,
-				Done, EOL;
+				Write, WriteCard, WriteString, WriteLn;
+(* GM *)
+FROM FileIO             IMPORT		Done, EOL;
 FROM	Scanner 	IMPORT	traceParser, printCode, printListing;
 
 

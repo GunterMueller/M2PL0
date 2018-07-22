@@ -139,7 +139,8 @@ END InitObjectTable;
 BEGIN
     NEW(undef);
     WITH undef^ DO
-	 id	 := IDENT(-1);
+        (* GM id        := IDENT(-1); *)
+         id      := 1;
 	 nextObj := NIL;
 	 level	 := 0;
 	 kind	 := undefined;
