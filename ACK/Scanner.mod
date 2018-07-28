@@ -1,11 +1,11 @@
 IMPLEMENTATION MODULE Scanner;		(* gf  01.06.89 (pl0) *)
 
-FROM	CharacterInput	IMPORT	ch, GetCh, EOF,
+FROM	CharInput	IMPORT	ch, GetCh, EOF,
 				endOfInput, currLine, currCol,
 				InitInput;
-FROM	StringTable	IMPORT	InitStringTable, EnterKeyWord,
+FROM	StringTab	IMPORT	InitStringTable, EnterKeyWord,
 				InsertIdent, IdKind;
-FROM	ErrorHandling	IMPORT	PrintError1;
+FROM	ErrorHand	IMPORT	PrintError1;
 FROM InOut IMPORT Write, WriteInt, WriteLn;
 
 IMPORT	SYSTEM;

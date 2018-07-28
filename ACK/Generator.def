@@ -1,7 +1,7 @@
 DEFINITION MODULE Generator;			(* gf	05.01.89 *)
 
 FROM	Scanner 	IMPORT STRING;
-FROM	Interpreter	IMPORT INSTR, Command;
+FROM	Interpret	IMPORT INSTR, Command;
 
 (* EXPORT	QUALIFIED Label,
 		  Gen, GenL, GenS, Gens,

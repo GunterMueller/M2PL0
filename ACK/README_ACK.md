@@ -1,3 +1,16 @@
+FILENAMES
+       Usually,  a  Modula-2 program consists of several definition and imple‐
+       mentation modules, and one program  module.   Definition  modules  must
+       reside  in  files with names having a ".def" extension.  Implementation
+       modules and program modules must reside in files having a ".mod" exten‐
+       sion.
+
+       The name of the file in which a definition module is stored must be the
+       same as the module-name, apart from the extension.  Also, in most  Unix
+       systems  filenames  are  only  14 characters long.  So, given an IMPORT
+       declaration for a module called "LongModulName", the compiler will  try
+       to  open a file called "LongModulN.def".  The requirement does not hold
+       for implementation or program modules, but is certainly recommended.
 
 CALLING THE COMPILER
        The easiest way to do this is to let the ack(1) program do it.  So,  to

@@ -1,11 +1,11 @@
 MODULE PL0;
 
 FROM	InOut	IMPORT	Read, ReadString,
-			Write, WriteString, WriteLn;
+			Write, WriteString, WriteLn,
+(* GM 			OpenInput, CloseInput, *)
+			Done;
 (* GM *)
-(* FROM FileIO IMPORT  OpenInput, CloseInput, Done *)
-FROM FileIO IMPORT   Done;
-FROM TextIO IMPORT OpenInput;
+FROM TextIO   IMPORT 	OpenInput, Close;
 
 FROM	SyntaxAnalysis	IMPORT	parse, SyntaxError;
 FROM	Synthesis	IMPORT	traverse, SemanticError;

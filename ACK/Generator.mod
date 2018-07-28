@@ -3,7 +3,7 @@ IMPLEMENTATION MODULE Generator;
 FROM	InOut		IMPORT	Write, WriteString,
 				WriteOct, WriteCard, WriteHex,
 				WriteInt, WriteLn;
-FROM	Interpreter	IMPORT	INSTR, Command;
+FROM	Interpret	IMPORT	INSTR, Command;
 FROM	Storage 	IMPORT	ALLOCATE;
 FROM	Scanner 	IMPORT	STRING, printCode;
 

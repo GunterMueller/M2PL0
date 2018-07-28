@@ -2,6 +2,8 @@ IMPLEMENTATION MODULE StringTable;		(* gf  01.11.88 (pl0) *)
 
 FROM Scanner IMPORT SYMBOL, IDENT;
 
+
+
 CONST bufLen = 1000;
       maxId  = 200;
 
@@ -32,8 +34,8 @@ BEGIN
    LOOP
 	IF w = 0 THEN RETURN 0 END;
 	IF buf[u] # buf[v] THEN
-	   (* RETURN INTEGER(ORD(buf[u])) - INTEGER(ORD(buf[v])) *)
-	   RETURN ORD(buf[u]) - ORD(buf[v])
+(* GM	    RETURN INTEGER(ORD(buf[u])) - INTEGER(ORD(buf[v]))  *)
+	   RETURN ORD(buf[u]) - ORD(buf[v]) 
 	ELSE
 	   INC(u); INC(v); DEC(w)
 	END
