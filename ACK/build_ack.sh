@@ -27,5 +27,7 @@ ack -c -t -gdb Synthesis.def
 ack -c -t -gdb Synthesis.mod
 
 
-ack -I. -o PL0  Synthesis.m SyntaxAnal.m StringTab.m Scanner.m ObjectTab.m Generator.m Interpret.m IntTree.m ErrorHand.m CharInput.m PL0.mod
+#ack -o PL0  Synthesis.m SyntaxAnal.m StringTab.m Scanner.m ObjectTab.m Generator.m Interpret.m IntTree.m ErrorHand.m CharInput.m PL0.mod
+ack -v -t -o PL0  Synthesis.o SyntaxAnal.o StringTab.o Scanner.o ObjectTab.o Generator.o Interpret.o IntTree.o ErrorHand.o CharInput.o PL0.mod
+#ack -v -o PL0  PL0.mod
 
