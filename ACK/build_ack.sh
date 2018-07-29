@@ -1,7 +1,9 @@
 #
 ############################################
-# This build file assumes the vishap oberon compiler is installed.
+# This build file assumes the ack compiler suite is installed.
 ############################################
+
+rm -f *.o *.s *.k *.m
 
 ack -c -t -gdb CharInput.def  
 ack -c -t -gdb CharInput.mod
@@ -25,5 +27,5 @@ ack -c -t -gdb Synthesis.def
 ack -c -t -gdb Synthesis.mod
 
 
-ack -I. -o PL0 Interpret.mod Synthesis.mod SyntaxAnal.mod StringTab.mod Scanner.mod ObjectTab.mod Generator.mod Interpret.mod IntTree.mod ErrorHand.mod CharInput.mod PL0.mod
+ack -I. -o PL0  Synthesis.m SyntaxAnal.m StringTab.m Scanner.m ObjectTab.m Generator.m Interpret.m IntTree.m ErrorHand.m CharInput.m PL0.mod
 
