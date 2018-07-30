@@ -12,6 +12,8 @@ FILENAMES
        to  open a file called "LongModulN.def".  The requirement does not hold
        for implementation or program modules, but is certainly recommended.
 
+NOTE: The file system length restrictions should be solved by the latest GIT version of the ACK Modula-2 compiler.:wq
+
 CALLING THE COMPILER
        The easiest way to do this is to let the ack(1) program do it.  So,  to
        compile a program module "prog.mod", just call

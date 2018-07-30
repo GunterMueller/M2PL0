@@ -5,11 +5,11 @@ FROM	InOut	IMPORT	Read, ReadString,
 			OpenInput, CloseInput,
 			Done;
 
-FROM	SyntaxAnal	IMPORT	parse, SyntaxError;
+FROM	SyntaxAnalysis	IMPORT	parse, SyntaxError;
 FROM	Synthesis	IMPORT	traverse, SemanticError;
 FROM	Generator	IMPORT	CodeStore;
-FROM	Interpret	IMPORT	Interpret;
-FROM	IntTree	 	IMPORT	blckPtr;
+FROM	Interpreter	IMPORT	Interpret;
+FROM	InternalTree	IMPORT	blckPtr;
 
 
 

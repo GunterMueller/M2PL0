@@ -1,0 +1,137 @@
+DEFINITION MODULE InternalTree; 		(* gf	3.8.88 *)
+
+FROM	Scanner IMPORT IDENT, STRING, POSITION;
+
+(*EXPORT QUALIFIED BLCK,	  DECL,     STMT,     EXPR,
+		 blckPtr, declPtr,  stmtPtr,  exprPtr,
+			  declKind, stmtKind, exprKind,
+		 monOperator, dyOperator, conType,
+		 NewDeclSequence, NewStmtSequence, NewExprSequence,
+		 NoDeclaration,   NoStatement,	   NoExpression;
+*)
+
+
+TYPE declKind = (nodeclaration, declsequence,
+		 typeident,
+		 constdecl, vardecl,
+		 procdecl);
+
+     stmtKind = (nostatement, stmtsequence,
+		 assign, call, read, write, if, while);
+
+     exprKind = (noexpression, exprsequence,
+		 identifier, immediatevalue, string,
+		 monadic, dyadic);
+
+     monOperator = (odd, neg, not);
+
+     dyOperator  = ( greaterequal, plus, minus, times, divides,
+		     equal, notequal, less, greater, lessequal,
+		     and, or);
+
+     conType	 = (int, bool);
+
+     blckPtr	= POINTER TO BLCK;
+     declPtr	= POINTER TO DECL;
+     stmtPtr	= POINTER TO STMT;
+     exprPtr	= POINTER TO EXPR;
+
+
+     BLCK = RECORD
+	       position 	: POSITION;
+	       declarations	: declPtr;
+	       statements	: stmtPtr;
+	    END;
+
+
+     DECL = RECORD
+	       position : POSITION;
+	       CASE kind : declKind OF
+		 nodeclaration:
+	       | declsequence:
+		   first	: declPtr;
+		   rest 	: declPtr
+	       | typeident:
+		   typeId	: IDENT
+	       | constdecl:
+		   constId	: IDENT;
+		   constVal	: CARDINAL
+	       | vardecl:
+		   varId	: IDENT;
+		   varType	: declPtr
+	       | procdecl:
+		   procId	: IDENT;
+		   body 	: blckPtr
+	       END
+	    END;
+
+     STMT = RECORD
+	       position : POSITION;
+	       CASE kind : stmtKind OF
+		 nostatement:
+	       | stmtsequence:
+		   first	: stmtPtr;
+		   rest 	: stmtPtr
+	       | assign:
+		   target	: exprPtr;
+		   source	: exprPtr
+	       | call:
+		   callId	: IDENT;
+		   callParams	: exprPtr
+	       | read:
+		   inVar	: exprPtr
+	       | write:
+		   outVal	: exprPtr
+	       | if:
+		   choice	: exprPtr;
+		   thenPart	: stmtPtr;
+		   elsePart	: stmtPtr
+	       | while:
+		   stop 	: exprPtr;
+		   doPart	: stmtPtr
+	       END
+	    END;
+
+
+     EXPR = RECORD
+	       position : POSITION;
+	       CASE kind: exprKind OF
+		 noexpression:
+	       | exprsequence:
+		   first	: exprPtr;
+		   rest 	: exprPtr
+	       | identifier:
+		   usedId	: IDENT;
+		   usedInd	: exprPtr;
+	       | string:
+		   stringPtr	: STRING;
+	       | immediatevalue:
+		   immVal	: CARDINAL;
+		   immType	: conType
+	       | monadic:
+		   monOpr	: monOperator;
+		   arg		: exprPtr
+	       | dyadic:
+		   dyOpr	: dyOperator;
+		   leftArg	: exprPtr;
+		   rightArg	: exprPtr
+	       END
+	    END;
+
+
+
+PROCEDURE NewDeclSequence (p: POSITION): declPtr;
+
+PROCEDURE NewStmtSequence (p: POSITION): stmtPtr;
+
+PROCEDURE NewExprSequence (p: POSITION): exprPtr;
+
+PROCEDURE NoDeclaration   (): declPtr;
+
+PROCEDURE NoStatement	  (): stmtPtr;
+
+PROCEDURE NoExpression	  (): exprPtr;
+
+
+END InternalTree.
+

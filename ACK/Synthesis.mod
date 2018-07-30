@@ -5,18 +5,18 @@ FROM InOut	IMPORT WriteLn, WriteString;
 
 FROM Scanner		IMPORT IDENT, STRING, POSITION,
 			       traceParser;
-FROM IntTree 		IMPORT BLCK,	DECL,	  STMT,     EXPR,
+FROM InternalTree	IMPORT BLCK,	DECL,	  STMT,     EXPR,
 			       blckPtr, declPtr,  stmtPtr,  exprPtr,
 					declKind, stmtKind, exprKind,
 			       monOperator, dyOperator, conType,
 			       NewDeclSequence,NewStmtSequence,NewExprSequence,
 			       NoDeclaration,  NoStatement,    NoExpression;
-FROM ErrorHand		IMPORT PrintError2;
-FROM Interpret		IMPORT Command;
+FROM ErrorHandling	IMPORT PrintError2;
+FROM Interpreter	IMPORT Command;
 FROM Generator		IMPORT InitGenerator,
 			       Gen, GenL, GenS, Gens,
 			       Label, GetNewLabel, SetLabel;
-FROM ObjectTab		IMPORT Object, ObjKind, ObjType,
+FROM ObjectTable	IMPORT Object, ObjKind, ObjType,
 			       Undefined, Integer,
 			       EnterDecl, FindDecl, GetObjType,
 			       EnterBlock, LeaveBlock,

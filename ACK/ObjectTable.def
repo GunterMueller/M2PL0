@@ -1,0 +1,62 @@
+DEFINITION MODULE ObjectTable;		(* gf  03.08.88 (pl0) *)
+
+FROM Scanner   IMPORT IDENT, STRING, POSITION;
+FROM Generator IMPORT Label;
+
+(*EXPORT QUALIFIED Object, ObjKind, ObjType,
+		 Undefined, Integer,
+		 EnterBlock, LeaveBlock,
+		 EnterDecl, FindDecl, GetObjType,
+		 InitObjectTable;
+*)
+
+
+TYPE Object   = POINTER TO Objectvalue;
+
+TYPE ObjType  = Object;
+
+TYPE ObjKind  = (newObject, undefined,
+		 simpleType,
+		 constant, stringConst,
+		 variable,
+		 procedure,
+		 block);
+
+TYPE Objectvalue =
+	     RECORD
+		id	: IDENT;
+		nextObj : Object;
+		level	: CARDINAL;
+		CASE kind : ObjKind OF
+		  newObject:
+		| undefined:
+		| simpleType:
+		| constant:
+			cType	: Object;
+			cVal	: CARDINAL
+		| stringConst:
+			strVal	: STRING;
+		| variable:
+			vType	: Object;
+			vAdr	: CARDINAL
+		| procedure:
+			procAdr : Label;
+		| block:
+			lastObj,
+			down	: Object;
+		END
+	     END;
+
+VAR Undefined : ObjType;
+    Integer   : ObjType;
+
+
+PROCEDURE EnterDecl  (id: IDENT; pos: POSITION) : Object;
+PROCEDURE FindDecl   (id: IDENT; pos: POSITION) : Object;
+PROCEDURE GetObjType (obj : Object)		: ObjType;
+
+PROCEDURE EnterBlock(): CARDINAL;	(* retuns nesting level *)
+PROCEDURE LeaveBlock(): CARDINAL;	(*	    "           *)
+PROCEDURE InitObjectTable(): CARDINAL;	(*	    "           *)
+
+END ObjectTable.

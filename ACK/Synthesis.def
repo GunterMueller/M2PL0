@@ -1,7 +1,7 @@
 DEFINITION MODULE Synthesis;		(* gf		1.8.88 *)
 
 
-FROM	IntTree	IMPORT	blckPtr;
+FROM	InternalTree	IMPORT	blckPtr;
 
 
 (* EXPORT QUALIFIED SemanticError, traverse;
