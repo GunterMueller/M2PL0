@@ -2,14 +2,12 @@
 ############################################
 # This build file assumes the vishap oberon compiler is installed.
 ############################################
-rm -rf ./m2bin
-rm *.sym
 
 
 #
-for x in *.def
+for x in *.mod
 do
   echo $x
-  gm2 -g -I. $x
+  gm2 -g -I. -flibs=ulm $x
 done
 
