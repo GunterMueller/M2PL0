@@ -4,8 +4,11 @@
 ############################################
 
 #
-#rm -f ./*.o 
-# rm -f ./*_m2.cpp ./*_m2.s
+rm -f ./*.o 
+rm -f ./*_m2.cpp ./*_m2.s
+rm -f a.out
+rm -f ./PL0
+#
 
 for x in   \
   CharacterInput.mod \

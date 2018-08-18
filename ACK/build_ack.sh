@@ -2,8 +2,9 @@
 ############################################
 # This build file assumes the ack compiler suite is installed.
 ############################################
-
+#
 rm -f *.o *.s *.k *.m
+rm -f  ./Synthesis.out ./PL0
 
 ack -c -t -gdb CharacterInput.def  
 ack -c -t -gdb CharacterInput.mod
