@@ -5,7 +5,7 @@ FROM	InOut	IMPORT	Read, ReadString,
 (* GM 			OpenInput, CloseInput, *)
 			Done;
 (* GM *)
-FROM TextIO   IMPORT 	OpenInput, Close;
+FROM TextIO   IMPORT 	File,OpenInput, Close;
 
 FROM	SyntaxAnalysis	IMPORT	parse, SyntaxError;
 FROM	Synthesis	IMPORT	traverse, SemanticError;
@@ -19,6 +19,8 @@ FROM	InternalTree	IMPORT	blckPtr;
 VAR InputFileName : ARRAY[0..40] OF CHAR;
     TREE : blckPtr;
     c : CHAR;
+(* GM *) MyInputFile: File;
+         FileDone : BOOLEAN;
 
 
 PROCEDURE ReadLn(VAR c: CHAR);
@@ -67,13 +69,15 @@ BEGIN
       ELSE
 	 ApendExtension;
  *)
-	 OpenInput(InputFileName);
+	 OpenInput(MyInputFile,InputFileName);
   (*    END; *)
-      IF Done THEN
+      FileDone  := Done();
+      IF FileDone THEN
 	 WriteLn;
 	 WriteString("Syntaktische Analyse"); WriteLn;
 	 TREE := parse();
-	 CloseInput;		(* read again from standard input *)
+	 (* GM CloseInput;		(* read again from standard input *) *)
+	 Close(MyInputFile);		(* read again from standard input *)
 	 IF NOT SyntaxError THEN
 	    WriteLn;
 	    WriteString("Semantische Analyse und Codeerzeugung"); WriteLn;
